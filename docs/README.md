@@ -1,4 +1,4 @@
 # 目录
 
-<img :src="$withBase('/assets/目录.svg')">
+<img :src="$withBase('/assets/list.svg')">
 
