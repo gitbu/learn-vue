@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>手写一个响应式系统</title>
+  <style>
+    #box {
+      border: 1px solid red;
+    }
+  </style>
+</head>
+<body>
+    <div id="box">
+      <h3 id="title"></h3>
+      <ul id="list"></ul>
+    </div>
+  <script>
+    data = {};
+    const updataView = {
+      title(data) {
+        const titleEel = document.querySelector('#title');
+        titleEel.textContent = data;
+      },
+      list(data = []) {
+        const listEle = document.querySelector('#list');
+
+        const d = document.createDocumentFragment();
+        data.forEach(item => {
+          const liEle = document.createElement('li');
+          liEle.textContent = item; 
+          d.appendChild(liEle)
+        })
+
+        listEle.appendChild(d);
+      }
+    };
+    const update = (key, value) => {
+      updataView[key](value)
+    }
+    function observer(data) {
+      if (data === null || typeof data !== 'object') {
+        return;
+      }
+
+      const keys = Object.keys(data);
+
+      keys.forEach(key => {
+        defineReactive(data, key, data[key])
+      })
+    }
+
+    function defineReactive(obj, key, value) {
+      Object.defineProperty(data, key, {
+        get: () => {
+        },
+        set: (newVal) => {
+          update(key, newVal);
+        },
+      })
+    }
+  </script>
+  
+</body>
+</html>

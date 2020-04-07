@@ -30,7 +30,21 @@ module.exports = {
             'prepare/项目结构',
             'prepare/源码调试',
           ]
-        },
+        }, {
+          title: '响应式系统',
+          collapsable: false,
+          children: [
+            {
+              title: '自己实现',
+              collapsable: true,
+              children: [
+                'observer/toDoByYourself/基础知识准备',
+                'observer/toDoByYourself/手写一个响应式系统'
+              ]
+            }
+          ]
+
+        }
       ]
     }
   },
