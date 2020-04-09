@@ -15,9 +15,27 @@
     <div id="box">
       <h3 id="title"></h3>
       <ul id="list"></ul>
+      <div id="sex"></div>
     </div>
   <script>
-    data = {};
+    data = {
+      title: '',
+      list: [],
+      people: {
+        sex: ''
+      }
+    };
+    Util = (function() {
+      const _toString = Object.prototype.toString;
+      const toRawType = (value) => _toString.call(value).slice(8, -1);
+      const isObject = (value) => toRawType(value) === 'Object';
+      const isArray = (value) => toRawType(value) === 'Array';
+
+      return {
+        isObject,
+        isArray
+      }
+    }())
     const updataView = {
       title(data) {
         const titleEel = document.querySelector('#title');
@@ -34,7 +52,11 @@
         })
 
         listEle.appendChild(d);
-      }
+      },
+      sex(data) {
+        const sexEel = document.querySelector('#sex');
+        sexEel.textContent = data;
+      },
     };
     const update = (key, value) => {
       updataView[key](value)
@@ -47,12 +69,18 @@
       const keys = Object.keys(data);
 
       keys.forEach(key => {
-        defineReactive(data, key, data[key])
+        const value = data[key];
+        if (Util.isObject(value)) {
+          observer(value)
+        } else {
+          defineReactive(data, key, value)
+        }
+
       })
     }
 
     function defineReactive(obj, key, value) {
-      Object.defineProperty(data, key, {
+      Object.defineProperty(obj, key, {
         get: () => {
         },
         set: (newVal) => {
@@ -60,6 +88,10 @@
         },
       })
     }
+    
+    observer(data);
+    data.title = 'title';
+    data.list = [1, 2, 3]
   </script>
   
 </body>
