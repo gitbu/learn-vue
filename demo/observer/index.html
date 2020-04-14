@@ -16,6 +16,8 @@
       <h3 id="title"></h3>
       <ul id="list"></ul>
       <div id="sex"></div>
+      <div id="age"></div>
+      <footer></footer>
     </div>
   <script>
     data = {
@@ -28,14 +30,38 @@
     Util = (function() {
       const _toString = Object.prototype.toString;
       const toRawType = (value) => _toString.call(value).slice(8, -1);
+
       const isObject = (value) => toRawType(value) === 'Object';
+
       const isArray = (value) => toRawType(value) === 'Array';
+
+      const isValidArrayIndex = (index) => {
+        const floatIndex = parseFloat("" + index);
+
+        return floatIndex >= 0 && Math.floor(index) === floatIndex && isFinite(index);
+      }
+
+      // 数组操作的响应式
+      const arrayProto = Array.prototype;
+      arrayMethods = Object.create(arrayProto);
+      const ARRAY_MEHTODS = ['push', 'pop', 'shift', 'unshift', 'sort', 'splice', 'reverse'];
+      ARRAY_MEHTODS.forEach(method => {
+        const originalMethod = arrayProto[method];
+        Object.defineProperty(arrayMethods, method, {value: function(...arg) {
+          const res = originalMethod.apply(this, arg);
+          update('list', this)
+          return res;
+        }})
+      }) 
 
       return {
         isObject,
-        isArray
+        isArray,
+        isValidArrayIndex,
+        arrayMethods,
       }
     }())
+
     const updataView = {
       title(data) {
         const titleEel = document.querySelector('#title');
@@ -43,8 +69,9 @@
       },
       list(data = []) {
         const listEle = document.querySelector('#list');
-
+        listEle.innerHTML = '';
         const d = document.createDocumentFragment();
+
         data.forEach(item => {
           const liEle = document.createElement('li');
           liEle.textContent = item; 
@@ -57,10 +84,16 @@
         const sexEel = document.querySelector('#sex');
         sexEel.textContent = data;
       },
+      age(data) {
+        const ageEel = document.querySelector('#age');
+        ageEel.textContent = data;
+      },
     };
+
     const update = (key, value) => {
       updataView[key](value)
     }
+
     function observer(data) {
       if (data === null || typeof data !== 'object') {
         return;
@@ -73,6 +106,10 @@
         if (Util.isObject(value)) {
           observer(value)
         } else {
+          if (Util.isArray(value)) {
+            value.__proto__  = Util.arrayMethods;
+          }
+
           defineReactive(data, key, value)
         }
 
@@ -82,16 +119,39 @@
     function defineReactive(obj, key, value) {
       Object.defineProperty(obj, key, {
         get: () => {
+          return value
         },
         set: (newVal) => {
           update(key, newVal);
+          value = newVal;
         },
       })
     }
-    
-    observer(data);
-    data.title = 'title';
-    data.list = [1, 2, 3]
+
+    class MyVue {
+      constructor(option = {}) {
+        const { data }  = option;
+        this._data = data;
+        observer(data);
+      }
+
+      set(target, key, value) {
+        if (Util.isArray(target) && Util.isValidArrayIndex(key)) {
+          target.splice(key, 1, value);
+          return value;
+        }
+
+        if (Util.isObject(target)) {
+          if (key in target) {
+            target[key] = value
+            return value
+          }
+
+          defineReactive(target, key, value)
+          update(key, value);
+        }
+      }
+    }
   </script>
   
 </body>
