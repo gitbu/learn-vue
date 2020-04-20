@@ -28,6 +28,7 @@ module.exports = {
           children: [
             ['prepare/', '介绍'],
             'prepare/项目结构',
+            'prepare/项目初始化',
             'prepare/源码调试',
           ]
         }, {
