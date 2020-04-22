@@ -36,13 +36,19 @@ module.exports = {
           collapsable: false,
           children: [
             {
+              title: 'computed的实现过程',
+              collapsable: true,
+              children: ['observer/computed'], 
+            },
+            {
               title: '自己实现',
               collapsable: true,
               children: [
                 'observer/toDoByYourself/基础知识准备',
                 'observer/toDoByYourself/手写一个响应式系统'
               ]
-            }
+            },
+         
           ]
 
         }
