@@ -36,9 +36,14 @@ module.exports = {
           collapsable: false,
           children: [
             {
-              title: 'computed的实现过程',
+              title: '原理剖析',
               collapsable: true,
-              children: ['observer/computed'], 
+              children: [
+                'observer/基本原理',
+                'observer/依赖搜集原理',
+                'observer/computed实现原理',
+                'observer/$watch实现原理',
+              ], 
             },
             {
               title: '自己实现',
