@@ -43,6 +43,8 @@ module.exports = {
                 'observer/依赖搜集原理',
                 'observer/computed实现原理',
                 'observer/$watch实现原理',
+                'observer/数组更新检测实现原理',
+                'observer/$set实现原理',
               ], 
             },
             {
