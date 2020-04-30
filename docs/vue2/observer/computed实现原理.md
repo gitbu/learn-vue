@@ -42,6 +42,11 @@
     if (watch.dirty) {
       watch.evalute;
     }
+    // 这个很重要，这个是让计算属性依赖的data数据去收集RenderWatch
+    // 当依赖的data数据修改时，会先更新视图，更新视图时就会访问计算属性
+    if （Dep.Target) {
+      watch.depend();
+    }
 
     return watch.value;
   }
