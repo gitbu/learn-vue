@@ -41,6 +41,7 @@ module.exports = {
               children: [
                 'observer/基本原理',
                 'observer/依赖搜集原理',
+                'observer/数组更新检测实现原理',
                 'observer/computed实现原理',
                 'observer/$watch实现原理',
               ], 
