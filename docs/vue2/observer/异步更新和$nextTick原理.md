@@ -79,6 +79,12 @@ function flushSchedulerQueue () {
 
 ## $nextTick原理
 
+下面就是nextTick的源码，实际干了三件事儿
+
+1. 把传入的`nextTick`的方法`cb`包装后放入`callbacks`中
+2. 定义执行`callbacks`中的方法的方法`flushCallbacks`
+3. 定义`timerFunc`函数，函数体内是一个异步函数，异步函数的参数就是`flushCallbacks`
+
 ```js
 const callbacks = []
 let pending = false
