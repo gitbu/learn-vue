@@ -41,7 +41,6 @@ module.exports = {
               children: [
                 'observer/基本原理',
                 'observer/依赖搜集原理',
-                'observer/数组更新检测实现原理',
                 'observer/computed实现原理',
                 'observer/$watch实现原理',
                 'observer/数组更新检测实现原理',
@@ -59,6 +58,16 @@ module.exports = {
          
           ]
 
+        }, {
+          title: '虚拟DOM',
+          collapsable: false,
+          children: [
+            'vdom/组件挂载过程',
+            'vdom/组件更新过程',
+            'vdom/createElement的实现过程',
+            'vdom/vnode',
+            'vdom/domDiff',
+          ]
         }
       ]
     }

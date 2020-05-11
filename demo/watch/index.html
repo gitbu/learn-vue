@@ -15,19 +15,34 @@
   </style>
 </head>
 <body>
-    <div id="container">
-      33333
+    <div
+      id="container"
+      :style="{width: width + 'px'}"
+      style="height: 200px"
+      @click="handleClick"
+      v-if="condition"
+    >
+      {{text}}
     </div>
   <script>
     vm = new Vue({
       el: '#container',
+      data() {
+        return {
+          text: 'hello world',
+          width: 200,
+          condition: 3
 
-      data: {
-        text: 'hello world'
+        }
       },
+      methods: {
+        handleClick() {
+          console.log('click')
+        },
+      }
 
     })
-
+    console.log(vm)
 
   </script>
   
