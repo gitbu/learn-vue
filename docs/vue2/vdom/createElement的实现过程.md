@@ -99,7 +99,7 @@ export function _createElement (
       )
     }
   } else {
-    // 如果是组件的话就需要先创建
+    // 如果是组件的话就需要先创建组件建
     vnode = createComponent(tag, data, context, children)
   }
   if (Array.isArray(vnode)) {
@@ -112,5 +112,44 @@ export function _createElement (
     return createEmptyVNode()
   }
 }
+```
+
+下面是一个例子大家可以试试用一下`createElement`
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <style>
+    #container {
+      height: 100px;
+      width: 100px;
+      border: 1px solid red;
+    }
+  </style>
+</head>
+<body>
+    <div id="container" />
+  <script>
+    vm = new Vue({
+      el: '#container',
+      data() {
+        return {
+          title: '这是一个标题'
+        }
+      },
+      render(createElement) {
+        return createElement('h1', this.title)
+      }
+    })
+  </script>
+  
+</body>
+</html>
 ```
 
