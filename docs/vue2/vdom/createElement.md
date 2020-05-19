@@ -26,6 +26,8 @@ vm.$createElement = (a, b, c, d) => createElement(vm, a, b, c, d, true)
 
 那我们就看一下`createElement`的具体实现
 
+*src/core/vdom/create-element.js*
+
 ```js
 export function createElement (
   context: Component, // 上下文，实际就是指当前vue的实例

@@ -18,34 +18,28 @@
     <div
       id="container"
     >
-    <button @click="handleClick">变</button>
+      {{text}}
     </div>
   <script>
     vm = new Vue({
       el: '#container',
       data() {
         return {
-          a: {
-            b: {
-              c: {
-                d: 333
-              }
-            }  
-          }
+          text: 'hello world',
+          width: 200,
+          condition: 3
+
         }
       },
       methods: {
         handleClick() {
-          this.a.b.m = 333;
+          console.log('click')
         },
-      },
-      watch: {
-        'a.b': function(newVal) {
-          console.log('newVal',newVal)
-        }
       }
 
     })
+    console.log(vm)
+
   </script>
   
 </body>

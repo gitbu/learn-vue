@@ -27,6 +27,7 @@ module.exports = {
           collapsable: false,
           children: [
             ['prepare/', '介绍'],
+            'prepare/基础知识准备',
             'prepare/项目结构',
             'prepare/项目初始化',
             'prepare/源码调试',
@@ -41,6 +42,7 @@ module.exports = {
               children: [
                 'observer/基本原理',
                 'observer/依赖搜集原理',
+                'observer/异步更新和$nextTick原理',
                 'observer/computed实现原理',
                 'observer/$watch实现原理',
                 'observer/数组更新检测实现原理',
@@ -51,7 +53,6 @@ module.exports = {
               title: '自己实现',
               collapsable: true,
               children: [
-                'observer/toDoByYourself/基础知识准备',
                 'observer/toDoByYourself/手写一个响应式系统'
               ]
             },
@@ -64,9 +65,16 @@ module.exports = {
           children: [
             'vdom/组件挂载过程',
             'vdom/组件更新过程',
-            'vdom/createElement的实现过程',
+            'vdom/createElement',
+            'vdom/createComponent',
             'vdom/vnode',
             'vdom/domDiff',
+          ]
+        }, {
+          title: '全局API',
+          collapsable: false,
+          children: [
+            '全局API/Vue.component'
           ]
         }
       ]

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<script>
+  console.log('--------------数据描述符-----------------');
+  const obj = {
+    name: 'xm'
+  }
+  Object.defineProperty(obj, 'name', {
+    enumerable: false,
+    writable: true,
+    configuable: true,
+    value: 'xh'
+  })
+
+  console.log('@@@obj', obj.name); // @@@ob xh
+
+
+  console.log('--------------访问器描述符-----------------');
+
+  const countObj = {
+    count: 1
+  }
+  function defineReactive(target, key, value) {
+    Object.defineProperty(target, key, {
+      get() {
+        console.log('countObj get', value) //countObj get 3
+
+        return value;
+      },
+      set(newValue) {
+        console.log('newVal', newValue); // 3
+        value = newValue;
+      }
+    })
+  }
+  defineReactive(countObj, 'count', 1);
+  countObj.count = 3;
+  countObj.count;
+</script>
+</html>

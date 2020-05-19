@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../../vue-dev/dist/vue.js"></script>
+  <style>
+    #container {
+      height: 100px;
+      width: 100px;
+      border: 1px solid red;
+    }
+    .child {
+      margin-top: 150px;
+      width: 100px;
+      height: 100px;
+      border: 1px solid blue;
+    }
+  </style>
+</head>
+<body>
+    <div
+      id="container"
+    >
+      <child :min="min" />
+    </div>
+    <script type="text/x-template" id="child">
+      <div class="child">
+        <p>min: {{min}}</p>
+        <p>max: {{max}}</p>
+        <p>average: {{average}}</p>
+        <button @click="handleMaxAdd">max加1</button>
+      </div>
+    </script>
+  <script>
+    const child = Vue.component('child', {
+      template: '#child',
+      props: {
+        min: Number
+      },
+      data() {
+        return {
+          max: 100
+        }
+      },
+      computed: {
+        average() {
+          const res = (this.min + this.max) / 2;
+          return res;
+        }
+      },
+      methods: {
+        handleMaxAdd() {
+          this.max++;
+        },
+      },
+      mounted() {
+        console.log(this);
+      }
+    })
+
+    vm = new Vue({
+      el: '#container',
+      data: {
+          min: 1,
+      },
+
+    })
+
+  </script>
+</body>
+</html>
