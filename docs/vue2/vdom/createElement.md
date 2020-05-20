@@ -82,7 +82,7 @@ export function _createElement (
     children = simpleNormalizeChildren(children)
   }
   let vnode, ns
-  // 如果是html标签元素的话直接创建vnode
+  // 如果标签是字符串，这里有两种情况，一种是原生的标签，一种是通过Vue.component注册的全局标签
   if (typeof tag === 'string') {
     let Ctor
     ns = (context.$vnode && context.$vnode.ns) || config.getTagNamespace(tag)
@@ -92,9 +92,10 @@ export function _createElement (
         undefined, undefined, context
       )
     } else if ((!data || !data.pre) && isDef(Ctor = resolveAsset(context.$options, 'components', tag))) {
-      // component
+      // 如果是全局注册的组件，这里要从Vue.options下找到,即这里的Ctor,传入createComponent中
       vnode = createComponent(Ctor, data, context, children, tag)
     } else {
+      // 如果是原生的标签，这里直接创建VNode
       vnode = new VNode(
         tag, data, children,
         undefined, undefined, context

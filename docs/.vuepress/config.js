@@ -62,19 +62,41 @@ module.exports = {
         }, {
           title: '虚拟DOM',
           collapsable: false,
-          children: [
-            'vdom/组件挂载过程',
-            'vdom/组件更新过程',
-            'vdom/createElement',
-            'vdom/createComponent',
-            'vdom/vnode',
-            'vdom/domDiff',
-          ]
+          children: [{
+            title: '组件挂载更新',
+            collapsable: true,
+            children: [
+              'vdom/组件挂载过程',
+              'vdom/组件更新过程',
+              'vdom/createElement',
+              'vdom/createComponent',
+              'vdom/vnode',
+            ],
+          }, {
+            title: 'domDiff',
+            collapsable: true,
+            children: [
+              'vdom/domDiff/vnode对比流程图',
+              'vdom/domDiff/patch',
+              'vdom/domDiff/createElm',
+              'vdom/domDiff/invokeCreateHooks',
+              'vdom/domDiff/patchVnode',
+              'vdom/domDiff/updateChildren',
+            ],
+          }]
         }, {
           title: '全局API',
           collapsable: false,
           children: [
-            '全局API/Vue.component'
+            '全局API/component和filter和directive',
+            '全局API/use',
+            '全局API/observable',
+            '全局API/extend',
+          ]
+        }, {
+          title: '编译原理',
+          collapsable: false,
+          children: [
           ]
         }
       ]

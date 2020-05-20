@@ -1,6 +1,18 @@
-# Vue.component
+# component和filter和directive
 
-*src/core/global-api/assets.js*
+`Vue.component`、`Vue.filter`、`Vue.directive`这三个都是定义在Vue.options上
+
+*src/shared/constants.js*
+
+```js
+export const ASSET_TYPES = [
+  'component',
+  'directive',
+  'filter'
+]
+```
+
+src/core/global-api/assets.js
 
 ```js
   ASSET_TYPES.forEach(type => {
@@ -20,13 +32,17 @@
           definition.name = definition.name || id
           definition = this.options._base.extend(definition)
         }
+    		// 这个是指令
         if (type === 'directive' && typeof definition === 'function') {
           definition = { bind: definition, update: definition }
         }
+    		// 这个是过滤器
         this.options[type + 's'][id] = definition
         return definition
       }
     }
   })
 ```
+
+
 
