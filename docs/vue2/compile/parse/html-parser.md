@@ -332,3 +332,13 @@ export function parseHTML (html, options) {
 
 *	name： 属性的key
 *	value：属性的value
+*	start： 一个属性的开始位置
+*	end: 一个属性的结束位置
+
+**ASTElement**
+
+* type: 标签类型
+* tag：标签名称
+* attrsList: 标签的属性列表
+* attrsMap: 标签的散列表
+* children: 子元素

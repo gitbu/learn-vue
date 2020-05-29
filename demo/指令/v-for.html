@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../../vue-dev/dist/vue.js"></script>
+  <style>
+    #container {
+      height: 100px;
+      width: 200px;
+      border: 1px solid red;
+    }
+  </style>
+</head>
+<body>
+    <div
+      id="container"
+    >
+      <ul>
+        <li v-for="(val, key, index) in obj">{{index}} {{key}}: {{val}}</li>
+      </ul>
+    <button @click="handleClick">变</button>
+    </div>
+  <script>
+    vm = new Vue({
+      el: '#container',
+      data() {
+        return {
+          obj: {
+            name: 'xm',
+            age: 18
+          }
+        }
+      },
+      methods: {
+        handleClick() {
+          this.a.b.m = 333;
+        },
+      },
+      watch: {
+        'a.b': function(newVal) {
+          console.log('newVal',newVal)
+        }
+      }
+
+    })
+  </script>
+  
+</body>
+</html>
