@@ -1,8 +1,14 @@
 # directive
 
+## 准备工作
+
 我们先去vue官网看一下怎么使用: [使用文档](https://cn.vuejs.org/v2/guide/custom-directive.html#ad)
 
 在学习这个之前我建议大家先看一下vue的`render`函数中的data属性是怎么回事儿，弄明白这个是搞明白下面原理的前提条件，[render说明文档]([https://cn.vuejs.org/v2/guide/render-function.html#%E6%B7%B1%E5%85%A5%E6%95%B0%E6%8D%AE%E5%AF%B9%E8%B1%A1](https://cn.vuejs.org/v2/guide/render-function.html#深入数据对象))
+
+
+
+## 举个栗子
 
 ****
 
@@ -76,9 +82,9 @@
 
 
 
-接下来我们看一下这个**directive**这个这个数组是在哪里调用的
+## 指令执行源码分析
 
-src/core/vdom/modules/directives.js
+> src/core/vdom/modules/directives.js
 
 ```js
 /* @flow */
@@ -217,7 +223,7 @@ function callHook (dir, hook, vnode, oldVnode, isDestroy) {
 
 
 
-src/core/util/options.js
+>  src/core/util/options.js
 
 ```js
 export function resolveAsset (
