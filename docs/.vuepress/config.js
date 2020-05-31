@@ -3,6 +3,9 @@ module.exports = {
   dest: './dist',
   title: 'vue 源码分析',
   description: 'vue 源码分析',
+  markdown: {
+    lineNumbers: true
+  },
   themeConfig: {
     repo: 'gitbu/learn-vue',
     editLinks: true,
@@ -92,6 +95,7 @@ module.exports = {
             '全局API/use',
             '全局API/observable',
             '全局API/extend',
+            '全局API/directive',
           ]
         }, {
           title: '编译原理',

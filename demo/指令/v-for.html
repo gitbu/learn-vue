@@ -18,7 +18,8 @@
     <div
       id="container"
     >
-      <ul>
+      <!--xxxx-->
+      <ul v-if="obj">
         <li v-for="(val, key, index) in obj">{{index}} {{key}}: {{val}}</li>
       </ul>
     <button @click="handleClick">变</button>

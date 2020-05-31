@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../../vue-dev/dist/vue.js"></script>
+  <style>
+    #container {
+      height: 100px;
+      width: 100px;
+      border: 1px solid red;
+    }
+    .student {
+      margin-top: 150px;
+      width: 120px;
+      height: 150px;
+      border: 1px solid blue;
+    }
+  </style>
+</head>
+<body>
+    <div
+      id="container"
+    >
+      <div v-for="student of students" :key="student.id">
+        <Student
+          :student="student"
+          :max-age="maxAge"
+          :min-age="minAge"
+        >
+          <template v-slot:total="{school}">
+            <p>他们都在{{school.school}}</p>
+          </template>
+        </Student>
+      </div>
+    </div>
+    <script type="text/x-template" id="student">
+      <div class="student">
+        <p>年级: {{student.grade}}</p>
+        <p>姓名: {{student.name}}</p>
+        <p>年龄: {{student.age}}</p>
+        <p v-if="student.age == maxAge">{{student.name | capitalize}}的年龄最大</p>
+        <p v-else-if="student.age == minAge">{{student.name}}的年龄最小</p>
+        <p v-else>{{student.name}}的年龄居中</p>
+        <slot name="total" :school="school" />
+      </div>
+    </script>
+  <script>
+    const child = Vue.component('student', {
+      template: '#student',
+      props: {
+        student: Object,
+        maxAge: Number,
+        minAge: Number,
+      },
+      data() {
+        return {
+          school: '方圆实验小学'
+        }
+      },
+      filters: {
+        capitalize: function (value) {
+          if (!value) return ''
+          value = value.toString()
+          return value.charAt(0).toUpperCase() + value.slice(1)
+        }
+      }
+    })
+
+    vm = new Vue({
+      el: '#container',
+      data: {
+        students: [{
+          grade: 1,
+          name: 'xm',
+          age: 5,
+          id: 1,
+        }, {
+          grade: 2,
+          name: 'xh',
+          age: 6,
+          id: 2,
+        }, {
+          grade: 3,
+          name: 'xl',
+          age: 7,
+          id: 3,
+        }],
+        maxAge: 7,
+        minAge: 5,
+      },
+    })
+  </script>
+</body>
+</html>

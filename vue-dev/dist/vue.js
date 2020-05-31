@@ -3361,14 +3361,6 @@
     children,
     normalizationType
   ) {
-    if (isDef(data) && isDef((data).__ob__)) {
-       warn(
-        "Avoid using observed data object as vnode data: " + (JSON.stringify(data)) + "\n" +
-        'Always create fresh vnode data objects in each render!',
-        context
-      );
-      return createEmptyVNode()
-    }
     // object syntax in v-bind
     if (isDef(data) && isDef(data.is)) {
       tag = data.is;
@@ -11843,6 +11835,7 @@
     options
   ) {
     var ast = parse(template.trim(), options);
+    debugger
     if (options.optimize !== false) {
       optimize(ast, options);
     }
@@ -11970,4 +11963,3 @@
   return Vue;
 
 })));
-//# sourceMappingURL=vue.js.map
