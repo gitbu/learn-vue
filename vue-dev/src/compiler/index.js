@@ -13,7 +13,6 @@ export const createCompiler = createCompilerCreator(function baseCompile (
   options: CompilerOptions
 ): CompiledResult {
   const ast = parse(template.trim(), options)
-  debugger
   if (options.optimize !== false) {
     optimize(ast, options)
   }

@@ -101,7 +101,19 @@ module.exports = {
           title: '编译原理',
           collapsable: false,
           children: [
-            '模板编译/概览'
+            '模板编译/概览',
+            {
+              title: '调用链路',
+              collapsable: true,
+              children: [
+                '模板编译/调用链路/图解链路',
+                '模板编译/调用链路/调用编译',
+                '模板编译/调用链路/compileToFunctions',
+                '模板编译/调用链路/createCompiler',
+                '模板编译/调用链路/createCompilerCreator',
+                '模板编译/调用链路/createCompileToFunctionFn',
+              ]
+            },
           ]
         }
       ]
