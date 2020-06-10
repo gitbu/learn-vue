@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../../vue-dev/dist/vue.js"></script>
+</head>
+<body>
+  <div id="container">
+    <input id="demo" v-focus value="value">
+  </div>
+  <script>
+    Vue.directive('focus', {
+      inserted: function(el, { value }) {
+        if (typeof(value) === 'boolean' && value === false) return;
+
+        el.focus();
+      }
+    })
+
+    vm = new Vue({
+      el: '#container',
+      data() {
+        return {
+          value: true
+        }
+      },
+    })
+  </script>
+</body>
+</html>

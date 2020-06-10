@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #container {
+      width: 100px;
+      border: 1px solid red;
+    }
+  </style>
+  <script src="../../vue-dev/dist/vue.js"></script>
+</head>
+<body>
+  <div id="container" v-ellipsis=5>
+    哒哒哒哒哒哒多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多
+  </div>
+  <script>
+    Vue.directive('ellipsis', {
+      inserted(el, { value }) {
+        if (!value || value === 1) {
+          el.style.overflow = 'hidden';
+          el.style.textOverflow = 'ellipsis';
+          el.style.whiteSpace = 'nowrap';
+        } else {
+          el.style.display =  '-webkit-box';
+          el.style['-webkit-box-orient'] = 'vertical'
+          el.style['-webkit-line-clamp'] = value;
+          el.style.overflow =  'hidden';
+        }
+      }
+    })
+
+    vm = new Vue({
+      el: '#container',
+      data() {
+        return {
+          value: true
+        }
+      },
+    })
+  </script>
+</body>
+</html>

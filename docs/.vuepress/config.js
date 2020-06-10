@@ -14,17 +14,21 @@ module.exports = {
     lastUpdated: '上次更新',
     nav: [
       {
-        text: 'vue',
+        text: 'vue2',
         items: [
           {
-            text: '2.x版本',
-            link: '/vue2/prepare/'
+            text: 'vue',
+            link: '/vue2/vue/prepare/'
+          },
+          {
+            text: 'vuex',
+            link: '/vue2/vuex/map/'
           },
         ]
       }
     ],
     sidebar: {
-      '/vue2/': [
+      '/vue2/vue/': [
         {
           title: '准备工作',
           collapsable: false,
@@ -116,7 +120,15 @@ module.exports = {
             },
           ]
         }
-      ]
+      ],
+      '/vue2/vuex/': [{
+        title: 'map的原理',
+        collapsable: false,
+        children: [
+          'map/mapState',
+          'map/mapGetters'
+        ]
+      }]
     }
   },
   configureWebpack: {

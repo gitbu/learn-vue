@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #container {
+      width: 100px;
+      border: 1px solid red;
+      overflow: hidden;
+    }
+  </style>
+  <script src="../../vue-dev/dist/vue.js"></script>
+</head>
+<body>
+  <input v-input-autosize id="container">
+  </textarea>
+  <script>
+    Vue.directive('input-autosize', {
+      inserted(el, { value }) {
+        el.addEventListener('input', e => {
+          const style = window.getComputedStyle(el);
+
+          const scrollHeight = el.scrollHeight
+          const height = parseInt(style.height);
+          const borderWidth = parseInt(style.borderWidth);
+          const padding = parseInt(style.padding);
+          const boxSizing = style.boxSizing;
+
+          if (boxSizing === 'border-box') {
+            if ((scrollHeight + borderWidth*2) - height >= 0) {
+              el.style.height = (el.scrollHeight + borderWidth*2) + 'px';
+            }
+          }
+          if (boxSizing === 'content-box') {
+            if (scrollHeight - height - padding*2 >= 0) {
+              el.style.height = (el.scrollHeight - padding*2) + 'px';
+            }
+          }
+        })
+      }
+    })
+
+    vm = new Vue({
+      el: '#container',
+      data() {
+        return {
+          value: true
+        }
+      },
+    })
+  </script>
+</body>
+</html>
