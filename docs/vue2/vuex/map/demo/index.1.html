@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="https://unpkg.com/vuex@2.0.0"></script>
+</head>
+<body>
+  <div id="app">
+    <Button @click="handleAdd">添加</Button>
+    <ul>
+      <li v-for="num of nums" :key="num">
+        {{num}}
+      </li>
+    </ul>
+    <h5>最大的: {{ maxNum }}</h5>
+  </div>
+  <script>
+    store = new Vuex.Store({
+      state: {
+        nums: []
+      },
+      mutations: {
+        add(state, num) {
+          state.nums.push(num);
+        }
+      },
+      getters: {
+        maxNum(state) {
+          return Math.max(...state.nums);
+        }
+      }
+    })
+
+    const { mapState, mapGetters, mapMutations } = Vuex;
+
+    new Vue({
+      el: "#app",
+      store,
+      computed: {
+        nums() {
+          return this.$store.state.nums;
+        },
+        maxNum() {
+          return this.$store.getters.maxNum;
+        }
+      },
+      methods: {
+        add(num) {
+          return this.$store.mutations.commit('add', num);
+        },
+        handleAdd() {
+          const num = parseInt(Math.random()*100);
+          this.add(num);
+        }
+      }
+    })
+
+  </script>
+  
+</body>
+</html>

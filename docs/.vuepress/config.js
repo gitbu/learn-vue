@@ -126,7 +126,10 @@ module.exports = {
         collapsable: false,
         children: [
           'map/mapState',
-          'map/mapGetters'
+          'map/mapGetters',
+          'map/mapMutations',
+          'map/mapActions',
+          'map/总结',
         ]
       }]
     }

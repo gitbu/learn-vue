@@ -1,6 +1,6 @@
 # mapState
 
-上节我们已经学习了`normalizeNamespace`和`normalizeMap`
+mapState一般我们用在computed中
 
 ```js
 export const mapState = normalizeNamespace((namespace, states) => {
