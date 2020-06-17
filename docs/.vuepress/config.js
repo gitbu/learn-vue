@@ -22,7 +22,7 @@ module.exports = {
           },
           {
             text: 'vuex',
-            link: '/vue2/vuex/map/'
+            link: '/vue2/vuex/初始化'
           },
         ]
       }
@@ -122,6 +122,13 @@ module.exports = {
         }
       ],
       '/vue2/vuex/': [{
+        title: 'module',
+        collapsable: false,
+        children: [
+          'module/module',
+          'module/module-collection',
+        ]
+      }, {
         title: 'map的原理',
         collapsable: false,
         children: [
