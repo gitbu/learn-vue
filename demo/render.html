@@ -16,20 +16,28 @@
   </style>
 </head>
 <body>
-    <div id="container" />
+  <div id="container">
+
+  </div>
   <script>
     vm = new Vue({
       el: '#container',
       data() {
         return {
-          title: '这是一个标题'
+          num: 1
         }
       },
-      render(createElement) {
-        return createElement('h1', this.title)
+      computed: {
+        a() {
+          return this.num + 1;
+        }
+      },
+      watch: {
+        a(newVal) {
+          console.log('a value', newVal);
+        }
       }
     })
-    console.log('@@@', vm)
   </script>
   
 </body>

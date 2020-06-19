@@ -1,33 +1,10 @@
-# 初始化
+# 实例能访问到$store的原理
 
-首先我们看一下Vuex在项目是怎么使用的
-
-```js
-const store = new Vuex.Store({
-  state: {
-    count: 0
-  },
-  mutations: {
-    increment (state) {
-      state.count++
-    }
-  }
-});
-
-new Vue({
-  el: '#app',
-  // 这个store后面会用到
-  store: store,
-})
-```
-
-接下来我们看一下`new Store`这个过程
+大家看代码的几个高亮部分,核心原理就是，**应用了`Vue.mixin`这个Api的功能**
 
 
 
-## 第一步: 让每个实例都可以访问到store
-
-```js
+```javascript {25,47-49}
 // 如果Vue在window上，直接install
 if (!Vue && typeof window !== 'undefined' && window.Vue) {
   install(window.Vue)
@@ -82,26 +59,5 @@ export default function (Vue) {
     }
   }
 }
-```
-
-
-
-## 第二步：创建modules
-
-通过传入的`Store`中的参数创建modules
-
-```js
-// 这里的options就是我们传入Store的对象 
-this._modules = new ModuleCollection(options)
-```
-
-这个详细过程在`moduel`中的`module-collection`这一节讲解
-
-
-
-## 第三步：安装module
-
-```js
-installModule(this, state, [], this._modules.root)
 ```
 

@@ -22,7 +22,7 @@ module.exports = {
           },
           {
             text: 'vuex',
-            link: '/vue2/vuex/初始化'
+            link: '/vue2/vuex/'
           },
         ]
       }
@@ -122,7 +122,18 @@ module.exports = {
         }
       ],
       '/vue2/vuex/': [{
-        title: 'module',
+        title: '原理解析',
+        collapsable: false,
+        children: [
+          '原理解析/实例能访问到$store的原理',
+          '原理解析/vuex的数据是怎么响应的',
+          '原理解析/mutation和commit',
+          '原理解析/getter',
+          '原理解析/action和dispatch',
+        ]
+
+      }, {
+        title: 'module的管理',
         collapsable: false,
         children: [
           'module/module',
