@@ -15,6 +15,7 @@ function makeLocalContext (store, namespace, path) {
   const noNamespace = namespace === ''
 
   const local = {
+    // 改造dispatch
     dispatch: noNamespace ? store.dispatch : (_type, _payload, _options) => {
       const args = unifyObjectStyle(_type, _payload, _options)
       const { payload, options } = args
@@ -31,6 +32,7 @@ function makeLocalContext (store, namespace, path) {
       return store.dispatch(type, payload)
     },
 
+    // 该着commit
     commit: noNamespace ? store.commit : (_type, _payload, _options) => {
       const args = unifyObjectStyle(_type, _payload, _options)
       const { payload, options } = args
@@ -50,6 +52,7 @@ function makeLocalContext (store, namespace, path) {
 
   // getters and state object must be gotten lazily
   // because they will be changed by vm update
+  // 设置拦截getter的get
   Object.defineProperties(local, {
     getters: {
       get: noNamespace
@@ -57,6 +60,7 @@ function makeLocalContext (store, namespace, path) {
         : () => makeLocalGetters(store, namespace)
     },
     state: {
+      // 获取嵌套的state
       get: () => getNestedState(store.state, path)
     }
   })

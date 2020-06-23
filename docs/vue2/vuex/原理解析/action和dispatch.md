@@ -1,7 +1,5 @@
 # action和dispatch
 
-
-
 ## 遍历注册action
 
 ```js

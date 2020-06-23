@@ -130,8 +130,8 @@ module.exports = {
           '原理解析/mutation和commit',
           '原理解析/getter',
           '原理解析/action和dispatch',
+          '原理解析/数据的存储方式',
         ]
-
       }, {
         title: 'module的管理',
         collapsable: false,
