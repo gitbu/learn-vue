@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../../vue-dev/dist/vue.js"></script>
+  <script src="../../vuex-dev/dist/vuex.js"></script>
+  <script src="./store.js"></script>
+  <style>
+    #container {
+      height: 100px;
+      width: 100px;
+      border: 1px solid red;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+
+  </div>
+  <script>
+    const store = new window.Vuex.Store(window.storeOptions)
+    vm = new Vue({
+      el: '#container',
+      store,
+      data() {
+        console.log('store', store);
+        return {
+          num: 1
+        }
+      },
+      computed: {
+        a() {
+          return this.num + 1;
+        }
+      },
+      watch: {
+        a(newVal) {
+          console.log('a value', newVal);
+        }
+      }
+    })
+  </script>
+  
+</body>
+</html>

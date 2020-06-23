@@ -7,3 +7,4 @@
 3. vuex是怎么管理一个深层嵌套的module的
 4. commit、dispatch是怎么实现的
 5. 各个map(mapState、mapMutations、mapGetters、mapActions)帮我做了什么
+

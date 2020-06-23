@@ -18,6 +18,7 @@ module.forEachGetter((getter, key) => {
 
 
 ```js
+// 把所有的getters存储在_wrappedGetters上
 function registerGetter (store, type, rawGetter, local) {
   if (store._wrappedGetters[type]) {
     if (__DEV__) {
@@ -35,6 +36,30 @@ function registerGetter (store, type, rawGetter, local) {
     )
   }
 }
+```
+
+
+
+```js
+  const wrappedGetters = store._wrappedGetters
+  const computed = {}
+  forEachValue(wrappedGetters, (fn, key) => {
+    // use computed to leverage its lazy-caching mechanism
+    // direct inline function use will lead to closure preserving oldVm.
+    // using partial to return function with only arguments preserved in closure environment.
+    computed[key] = partial(fn, store)
+    // 按照路径定义了store.getters
+    Object.defineProperty(store.getters, key, {
+      get: () => store._vm[key],
+      enumerable: true // for local getters
+    })
+  })
+  store._vm = new Vue({
+    data: {
+      $$state: state
+    },
+    computed
+  })
 ```
 
 

@@ -55,6 +55,7 @@ function registerAction (store, type, handler, local) {
     } = unifyObjectStyle(_type, _payload)
 
     const action = { type, payload }
+    // 获取到当前的action
     const entry = this._actions[type]
     if (!entry) {
       if (__DEV__) {
@@ -64,6 +65,7 @@ function registerAction (store, type, handler, local) {
     }
 
     try {
+      // 执行前置操作
       this._actionSubscribers
         .slice() // shallow copy to prevent iterator invalidation if subscriber synchronously calls unsubscribe
         .filter(sub => sub.before)
@@ -75,6 +77,7 @@ function registerAction (store, type, handler, local) {
       }
     }
 
+    // 执行action方法
     const result = entry.length > 1
       ? Promise.all(entry.map(handler => handler(payload)))
       : entry[0](payload)
@@ -82,6 +85,7 @@ function registerAction (store, type, handler, local) {
     return new Promise((resolve, reject) => {
       result.then(res => {
         try {
+          // 执行后置操作
           this._actionSubscribers
             .filter(sub => sub.after)
             .forEach(sub => sub.after(action, this.state))
@@ -94,6 +98,7 @@ function registerAction (store, type, handler, local) {
         resolve(res)
       }, error => {
         try {
+          // 执行用户定义的错误处理函数
           this._actionSubscribers
             .filter(sub => sub.error)
             .forEach(sub => sub.error(action, this.state, error))
