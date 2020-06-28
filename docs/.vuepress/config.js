@@ -1,7 +1,7 @@
 module.exports = {
   base: '/learn-vue/',
   dest: './dist',
-  title: 'vue 源码分析',
+  title: 'vue 全家桶原理分析',
   description: 'vue 源码分析',
   markdown: {
     lineNumbers: true
@@ -23,6 +23,19 @@ module.exports = {
           {
             text: 'vuex',
             link: '/vue2/vuex/'
+          },
+          {
+            text: 'vue-router',
+            link: '/vue2/vue-router/'
+          },
+        ]
+      },
+      {
+        text: 'vue3',
+        items: [
+          {
+            text: 'vue',
+            link: '/vue3/vue/prepare/'
           },
         ]
       }
@@ -148,6 +161,24 @@ module.exports = {
           'map/mapMutations',
           'map/mapActions',
           'map/总结',
+        ]
+      }],
+      '/vue2/vue-router/': [{
+        title: '原理解析',
+        collapsable: false,
+        children: [
+          ['', '首页'],
+        ]
+
+      }],
+      '/vue3/vue/': [{
+        title: '准备工作',
+        collapsable: false,
+        children: [
+          ['prepare/','特点介绍'],
+          'prepare/基础知识准备',
+          'prepare/学习资料',
+          'prepare/源码调试',
         ]
       }]
     }
