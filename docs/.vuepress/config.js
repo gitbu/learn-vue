@@ -168,6 +168,7 @@ module.exports = {
         collapsable: false,
         children: [
           ['', '首页'],
+          '前端路由',
           'install的过程'
         ]
 
